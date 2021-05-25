@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Energized!</name>
+    <directory>energizedmod</directory>
+    <id>2496430986</id>
+    <description>Adds a new transformation, Energized!
+
+Acquire 3 battery related items(9 volt, The Battery, Charged Baby, Car Battery, Jumper Cables, 4.5 volt, Battery pack) to activate the transformation
+
+While you are Energized, all red heart pickups(except for rotten hearts) will be turned into batteries for the rest of the run. This includes heart drops from the lovers card, and any other item that drops red hearts. Items that heal you directly such as yum heart are not affected. Picking up batteries now also heals you! Micro batteries heal for a half heart while any other type heals you for a full heart.
+
+Compatability:
+-Shouldn't conflict with any mod, but let me know if it does
+
+Additional Credit:
+-piber20 for their helper mod, which let me display the transformation text nicely
+
+Known Issues
+-Restarting the game and continuing the run after getting the transformation will cause the game to play the transformation sound again when you continue. Very minor issue and has no gameplay effect but I'll fix it soon</description>
+    <version>1.5</version>
+    <visibility>Private</visibility>
+    <tag id="Tweaks"/>
+</metadata>
