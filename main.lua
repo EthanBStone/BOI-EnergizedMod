@@ -123,7 +123,17 @@ function BatteryMod:CheckTransformations(player, pNum)
 end
 
 
-
+--External Item Desc Support
+if not(EID == nil) then
+	local dummySprite = Sprite()
+	dummySprite:Load("gfx/eid_inline_icons.anm2", true)
+	EID:addIcon("Edin_Energized!", "pickups", 9, 8, 11, -1, 0, dummySprite)	
+	EID:createTransformation("Edin_Energized!", "Energized!") -- Transformation
+	--Add Transformation to all items
+	for k in pairs(transformItems)  do
+		EID:assignTransformation("collectible", transformItems[k], "Edin_Energized!") 
+	end	
+end
 
 BatteryMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, BatteryMod.onStart)
 BatteryMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, BatteryMod.onPlayerUpdate)

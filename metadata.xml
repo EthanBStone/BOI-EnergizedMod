@@ -10,14 +10,20 @@ Acquire 3 battery related items(9 volt, The Battery, Charged Baby, Car Battery, 
 While you are Energized, all red heart pickups(except for rotten hearts) will be turned into batteries for the rest of the run. This includes heart drops from the lovers card, and any other item that drops red hearts. Items that heal you directly such as yum heart are not affected. Picking up batteries now also heals you! Micro batteries heal for a half heart while any other type heals you for a full heart.
 
 Compatability:
--Shouldn't conflict with any mod, but let me know if it does
+-Might have some conflict with other mods that use piber20's helper mod, but I am unsure, just let me know if you have any problems
 
 Additional Credit:
 -piber20 for their helper mod, which let me display the transformation text nicely
 
-Known Issues
--Restarting the game and continuing the run after getting the transformation will cause the game to play the transformation sound again when you continue. Very minor issue and has no gameplay effect but I'll fix it soon</description>
-    <version>1.5</version>
-    <visibility>Private</visibility>
+Known Issues:
+
+
+Changelog:
+5-25-21
+-Fixed Coop bugs
+-Changed it so hearts are only converted to batteries when the Energized player is close to them. This allows non energized players to heal in coop
+-Fixed continuing the run causing the &quot;Energized!&quot; text to appear again</description>
+    <version>1.6</version>
+    <visibility>Public</visibility>
     <tag id="Tweaks"/>
 </metadata>
