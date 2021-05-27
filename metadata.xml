@@ -25,7 +25,7 @@ Changelog:
 -Fixed Coop bugs
 -Changed it so hearts are only converted to batteries when the Energized player is close to them. This allows non energized players to heal in coop
 -Fixed continuing the run causing the &quot;Energized!&quot; text to appear again</description>
-    <version>1.7</version>
+    <version>1.8</version>
     <visibility>Public</visibility>
     <tag id="Tweaks"/>
 </metadata>

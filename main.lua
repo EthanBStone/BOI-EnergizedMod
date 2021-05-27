@@ -33,7 +33,9 @@ end
 local GameState = {}
 
 function BatteryMod:onStart(continuedRun)
-	GameState = json.decode(BatteryMod:LoadData() )
+	if BatteryMod:HasData() then
+		GameState = json.decode(BatteryMod:LoadData() )
+	end
 	if GameState.Transformed == nil or continuedRun == false then GameState.Transformed = {0,0,0,0} end
 	if GameState.TransformProgress == nil or continuedRun == false then GameState.TransformProgress = {0,0,0,0} end
 end
