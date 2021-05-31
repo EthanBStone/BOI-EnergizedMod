@@ -21,6 +21,7 @@ function BatteryMod:onUpdate()
 	for i = 1, game:GetNumPlayers() do
 		local currplayer = game:GetPlayer(i)
 			currplayer:GetData().pNum = i
+			
 	end		
 	--Start of game
 	--[[if game:GetFrameCount() == 1 then
@@ -36,8 +37,8 @@ function BatteryMod:onStart(continuedRun)
 	if BatteryMod:HasData() then
 		GameState = json.decode(BatteryMod:LoadData() )
 	end
-	if GameState.Transformed == nil or continuedRun == false then GameState.Transformed = {0,0,0,0} end
-	if GameState.TransformProgress == nil or continuedRun == false then GameState.TransformProgress = {0,0,0,0} end
+	if GameState.Transformed == nil or continuedRun == false then GameState.Transformed = {0,0,0,0,0,0,0,0} end
+	if GameState.TransformProgress == nil or continuedRun == false then GameState.TransformProgress = {0,0,0,0,0,0,0,0} end
 end
 
 function BatteryMod.onGameExit() 
