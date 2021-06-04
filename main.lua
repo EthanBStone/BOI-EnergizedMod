@@ -6,6 +6,7 @@ local sound = SFXManager()
 local json = require("json")
 
 local COSTUME_ENERGIZED = Isaac.GetCostumeIdByPath("gfx/characters/EnergizedCostume.anm2")
+local COLLECTIBLE_RUSTY_BATTERY = Isaac.GetItemIdByName("Rusty Battery")
 
 local transformItems = { 
 	647, --4.5 volt
@@ -53,7 +54,7 @@ function BatteryMod:onPlayerUpdate(player)
 	end
 	
 	--Check transformation for each player
-	if game:GetFrameCount() % 30 == 1 then
+	if game:GetFrameCount() % 30 == 1 and GameState.TransformProgress ~= nil then
 			BatteryMod:CheckTransformations(player, pNum)	
 	end
 	
@@ -83,13 +84,21 @@ function BatteryMod:onPlayerUpdate(player)
 		--Heal on battery pickup
 		for i, ent in pairs(Isaac.FindInRadius(player.Position, 10, EntityPartition.PICKUP)) do
 			--print("Check P" .. pNum .. " Transformed = " .. GameState.Transformed[pNum])
-			if ent:GetSprite():IsPlaying("Collect") and ent:GetData().Picked == nil and ent.Variant == PickupVariant.PICKUP_LIL_BATTERY and GameState.Transformed[pNum] == 1 then
-				ent:GetData().Picked = true
-				if ent.SubType == BatterySubType.BATTERY_MICRO then
-					player:AddHearts(1)
-				else 
-					player:AddHearts(2)	
+			if  ent:GetData().Picked == nil and ent.Variant == PickupVariant.PICKUP_LIL_BATTERY and GameState.Transformed[pNum] == 1 then
+				if not ent:GetSprite():IsPlaying("Collect") and not player:HasFullHearts() and (not player:NeedsCharge(0) and not player:NeedsCharge(1) and not player:NeedsCharge(2) ) then
+					ent:GetSprite():Play("Collect", true)
+					ent:Die()
+					sound:Play(SoundEffect.SOUND_BEEP)
 				end
+				if ent:GetSprite():IsPlaying("Collect") then
+					ent:GetData().Picked = true
+					if ent.SubType == BatterySubType.BATTERY_MICRO then
+						player:AddHearts(1)
+					else 
+						player:AddHearts(2)	
+					end				
+				end
+
 				
 			end	
 		end
@@ -116,6 +125,7 @@ function BatteryMod:CheckTransformations(player, pNum)
 		sound:Play(SoundEffect.SOUND_POWERUP_SPEWER)
 		piber20HelperMod:doStreak("Energized!")
 		player:AddNullCostume(COSTUME_ENERGIZED)
+		--Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, COLLECTIBLE_RUSTY_BATTERY, player.Position, Vector(0,0), nil) --Spawn Rusty battery item
 	--Take away transformation if player rerolls out of it or loses the items
 	elseif GameState.TransformProgress[pNum] < 3 and GameState.Transformed[pNum] == 1 then
 		--print("P" .. pNum .. " has untransformed :(")
@@ -125,9 +135,20 @@ function BatteryMod:CheckTransformations(player, pNum)
 	--print("Transform progress" .. GameState.TransformProgress[1])
 end
 
+--Rusty Battery Item Code
+function BatteryMod:onRustyBatteryUse(item, rng, player, useFlags, slot, customData)
+	local rngRoll = rng:RandomInt(100)
+	if rngRoll <= 25 then
+		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MICRO, player.Position, Vector(-10 + rng:RandomInt(20),-10 + rng:RandomInt(20)), nil)
+	end
+	
+	return true
+	
+end
 
 --External Item Desc Support
-if not(EID == nil) then
+if EID then
+	EID:addCollectible(COLLECTIBLE_RUSTY_BATTERY, "Has a small chance to drop a micro battery when used. #If you are Energized! and don't have an active item, then you should carry this around")
 	local dummySprite = Sprite()
 	dummySprite:Load("gfx/eid_inline_icons.anm2", true)
 	EID:addIcon("Edin_Energized!", "pickups", 9, 8, 11, -1, 0, dummySprite)	
@@ -138,7 +159,11 @@ if not(EID == nil) then
 	end	
 end
 
+
+
+
 BatteryMod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, BatteryMod.onStart)
 BatteryMod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, BatteryMod.onPlayerUpdate)
 BatteryMod:AddCallback(ModCallbacks.MC_POST_UPDATE, BatteryMod.onUpdate)
 BatteryMod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, BatteryMod.onGameExit)
+BatteryMod:AddCallback(ModCallbacks.MC_USE_ITEM, BatteryMod.onRustyBatteryUse, COLLECTIBLE_RUSTY_BATTERY)

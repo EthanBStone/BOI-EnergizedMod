@@ -1,5 +1,4 @@
 <items gfxroot="gfx/items/" version="1">
 
-	<passive cache="" name="Green Candle" description="Green as frick" gfx="GreenCandle.png" />
-	<passive cache="damage" name="The Art" description="Noah celis" gfx="TheArt.png" />
+	<active cache="" name="Rusty Battery" description="Rusty, but might still hold a charge..." maxcharges="6" gfx="RustyBattery.png" />
 </items>

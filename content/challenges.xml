@@ -1,0 +1,4 @@
+<challenges version="1">
+
+	<challenge name="Energized!" startingitems= "63,520,603" difficulty = "1" playertype = "15" endstage="11" altpath = "true"/>
+</challenges>

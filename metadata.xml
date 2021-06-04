@@ -7,18 +7,25 @@
 
 Acquire 3 battery related items(9 volt, The Battery, Charged Baby, Car Battery, Jumper Cables, 4.5 volt, Battery pack) to activate the transformation
 
-While you are Energized, all red heart pickups(except for rotten hearts) will be turned into batteries for the rest of the run. This includes heart drops from the lovers card, and any other item that drops red hearts. Items that heal you directly such as yum heart are not affected. Picking up batteries now also heals you! Micro batteries heal for a half heart while any other type heals you for a full heart.
+While you are Energized, all red heart pickups(except for rotten hearts) will be turned into batteries for the rest of the run. This includes heart drops from the lovers card, and any other item that drops red hearts. Items that heal you directly such as yum heart are not affected. Picking up batteries now also heals you! Micro batteries heal for a half heart while any other type heals you for a full heart. You can now pick up batteries to heal even if you don't have an active item, or even if your active item doesn't need charges, which prevents softlocking!
 
-Compatability:
+Also includes a new challenge: Energized! Start with the Energized transformation as Apollyon, along with the Battery and Jumper Cables to show off the true power of the transformation!
+
+[h1] Latest Update[/h1]
+6-3-21: The Energized! transformation now lets you pick up batteries when you don't have an active item, or when your active item is fully charged, if you aren't at full health. This means that you can always pick up batteries to heal even and prevents softlocking.
+
+Added a new Challenge: Energized! It gives you the transformation from the start so you can test it out
+
+[h1]Compatability[/h1]
 -Might have some conflict with other mods that use piber20's helper mod, but I am unsure, just let me know if you have any problems
 
-Additional Credit:
+[h1]Additional Credit[/h1]
 -piber20 for their helper mod, which let me display the transformation text nicely
 
-Known Issues:
-
-
-Changelog:
+[h1]Updates[/h1]
+6-3-21
+-The Energized! transformation now lets you pick up batteries when you don't have an active item, or when your active item is fully charged, if you aren't at full health. This means that you can always pick up batteries to heal even and prevents softlocking.
+-Added a new Challenge: Energized! It gives you the transformation from the start so you can test it out
 5-27-21
 -Updated steam workshop icon
 
@@ -28,7 +35,7 @@ Changelog:
 -Fixed Coop bugs
 -Changed it so hearts are only converted to batteries when the Energized player is close to them. This allows non energized players to heal in coop
 -Fixed continuing the run causing the &quot;Energized!&quot; text to appear again</description>
-    <version>1.10</version>
+    <version>1.12</version>
     <visibility>Public</visibility>
     <tag id="Tweaks"/>
 </metadata>
